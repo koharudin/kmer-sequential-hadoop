@@ -1,2 +1,7 @@
-/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/NewClass.java
-/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/hadoop/Kmers.java
+/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/hadoop/Mapper.java
+/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/RandomGeneratorSequence.java
+/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/hadoop/Reducer.java
+/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/Kmer.java
+/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/hadoop/KmerHadoop.java
+/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/SlidingEvent.java
+/Users/koharudin/NetBeansProjects/kmers-hadoop/src/main/java/kuliah/kmers/sekuensial/KmerSequential.java

@@ -1,4 +1,7 @@
-kuliah/kmers/hadoop/Kmers$IntSumReducer.class
-kuliah/kmers/hadoop/Kmers.class
-NewClass.class
-kuliah/kmers/hadoop/Kmers$TokenizerMapper.class
+kuliah/kmers/RandomGeneratorSequence.class
+kuliah/kmers/Kmer.class
+kuliah/kmers/hadoop/Reducer.class
+kuliah/kmers/hadoop/KmerHadoop.class
+kuliah/kmers/sekuensial/KmerSequential.class
+kuliah/kmers/SlidingEvent.class
+kuliah/kmers/hadoop/Mapper.class
