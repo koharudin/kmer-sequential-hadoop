@@ -16,7 +16,7 @@ public class KmerCount {
 	public static void main(String[] args) throws Exception {
 		BasicConfigurator.configure();
 		Configuration conf = new Configuration();
-		System.out.println("kmer custom...");
+		System.out.println("kmer custom ubah...");
 		//conf.set("fs.defaultFS", "hdfs://192.168.0.202:9000");
 		//conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
 
