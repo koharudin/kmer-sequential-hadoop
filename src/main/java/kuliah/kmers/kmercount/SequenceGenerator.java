@@ -1,5 +1,6 @@
 package kuliah.kmers.kmercount;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
@@ -26,6 +27,15 @@ public class SequenceGenerator {
         }
     }
     public static void main(String[] args){
+        System.out.println("input_dir : " + args[0]);
+        File f = new File(args[0]);
+        if(f.exists()){
+            System.out.println("File "+args[0]+" telah ada...");
+        }
+        else {
+            System.out.println("File "+args[0]+" akan dibuat...");
+            f.mkdir();
+        }
         makeGeneratedFiles(args[0],Integer.valueOf(args[1]),Integer.valueOf(args[2]));
     }
 }
