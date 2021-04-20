@@ -30,7 +30,7 @@ public class KmerCount {
 		long start = System.nanoTime();
 		Job job = new Job(conf);
 		job.setJarByClass(KmerCount.class);
-		FileInputFormat.addInputPath(job, new Path(arg[0]));
+		FileInputFormat.addInputPath(job, new Path(args[0]));
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
 		LocalDateTime now = LocalDateTime.now();
 		String output_dir = args[1]+"/"+ dtf.format(now);

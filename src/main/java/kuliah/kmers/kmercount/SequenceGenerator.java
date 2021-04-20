@@ -26,6 +26,6 @@ public class SequenceGenerator {
         }
     }
     public static void main(String[] args){
-        makeGeneratedFiles(args[0],args[1],args[2]);
+        makeGeneratedFiles(args[0],Integer.valueOf(args[1]),Integer.valueOf(args[2]));
     }
 }
