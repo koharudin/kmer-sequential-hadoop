@@ -1,12 +1,9 @@
 package kuliah.kmers.sekuensial;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Random;
+import java.io.File;
+import java.util.*;
+
 import kuliah.kmers.Kmer;
-import kuliah.kmers.RandomGeneratorSequence;
-import kuliah.kmers.SlidingEvent;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,38 +14,73 @@ import kuliah.kmers.SlidingEvent;
  *
  * @author koharudin
  */
-public class KmerSequential extends Kmer {
+public class KmerSequential {
 
-    HashMap result;
+    public static HashMap<String, Long>   result;
 
     public KmerSequential() {
-        this.result = new HashMap<String, Integer>();
+
+    }
+    public static void print(){
+        Iterator<String> itr = KmerSequential.result.keySet().iterator();
+        while (itr.hasNext())
+        {
+            String key = itr.next();
+            Long value = KmerSequential.result.get(key);
+
+            System.out.println(key + "=" + value);
+        }
     }
     public static void main(String[] args) {
-        String sequences = RandomGeneratorSequence.generate(10);
-        System.out.println(sequences);
-        long startTime = System.currentTimeMillis();
+        KmerSequential.result = new HashMap<String, Long>();
+        int numFiles = 1000;
+        int lengthSequence = 10000;
+        String input_dir = args[0]+"/input_"+numFiles+"_"+lengthSequence+"";
+        // Creates an array in which we will store the names of files and directories
+        String[] pathnames;
 
-        KmerSequential ks = new KmerSequential();
-        ks.slidingWindow(sequences, 2);
-        long stopTime = System.currentTimeMillis();
-        System.out.println((stopTime - startTime));
-
-        for (Iterator iterator = ks.result.keySet().iterator(); iterator.hasNext();) {
-            Object next = iterator.next();
-            System.out.println(next + ">" + ks.result.get(next));
+        // Creates a new File instance by converting the given pathname string
+        // into an abstract pathname
+        System.out.println(input_dir);
+        File f = new File(input_dir);
+        // Populates the array with names of files and directories
+        pathnames = f.list();
+        // For each pathname in the pathnames array
+        int index=1;
+        int k=3;
+        // get the start time
+        long start = System.nanoTime();
+        for (String pathname : pathnames) {
+            // Print the names of files and directories
+            System.out.println("index "+index+" > "+pathname);
+            String fullname = input_dir+"/"+pathname;
+            File myObj = new File(fullname);
+            try (Scanner myReader = new Scanner(myObj)) {
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    System.out.println(data);
+                    if (data.matches("[ACTGN]+")) {
+                        for (int i = 0; i <= data.length() - k; i++) {
+                            String s = data.substring(i, i + k);
+                            Long n = KmerSequential.result.get(s);
+                            KmerSequential.result.put(s, (n == null) ? 1 : n + 1);
+                        }
+                    }
+                }
+            }
+            catch (Exception e){
+                System.out.println(e.toString());
+            }
+            index++;
         }
-        System.out.println("123");
+        // get the end time
+        long end = System.nanoTime();
+        // execution time
+        long execution = end - start;
+        System.out.println("Execution time: " + execution + " nanoseconds");
+        KmerSequential.print();
     }
 
-    @Override
-    public void onSliding(String key) {
-        if (result.containsKey(key)) {
-            Integer sum = (Integer) result.get(key);
-            result.put(key, sum + 1);
-        } else {
-            result.put(key, 1);
-        }
-    }
+
 
 }

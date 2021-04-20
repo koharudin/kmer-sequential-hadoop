@@ -16,7 +16,7 @@ class KmerCountMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
 	private int k;
 
 	@Override
-	public void setup(Context context) throws IOException, InterruptedException {
+	public void setup(Context context)  {
 		kmerMap = new HashMap<String, Long>();
 		Configuration conf = context.getConfiguration();
 		k = Integer.parseInt(conf.get("k"));
@@ -25,7 +25,6 @@ class KmerCountMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
 	@Override
 	public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 		String line = value.toString();
-		System.out.println("line "+line);
 		if (line.matches("[ACTGN]+")) {
 			for (int i = 0; i <= line.length() - k; i++) {
 				String s = line.substring(i, i + k);
