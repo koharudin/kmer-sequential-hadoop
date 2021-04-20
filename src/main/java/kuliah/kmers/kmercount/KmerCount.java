@@ -20,14 +20,7 @@ import java.util.Date;
 public class KmerCount {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("generating file ");
-		int numFiles = 10000;
-		int lengthSequence = 1000;
-		String input_dir = args[0]+"/input_"+numFiles+"_"+lengthSequence+"";
 
-		File f = new File(input_dir);
-		f.mkdir();
-		SequenceGenerator.makeGeneratedFiles(input_dir,lengthSequence,numFiles);
 		System.out.println("Configuring Job MapReduce ");
 		//BasicConfigurator.configure();
 		Configuration conf = new Configuration();
@@ -37,7 +30,7 @@ public class KmerCount {
 		long start = System.nanoTime();
 		Job job = new Job(conf);
 		job.setJarByClass(KmerCount.class);
-		FileInputFormat.addInputPath(job, new Path(input_dir));
+		FileInputFormat.addInputPath(job, new Path(arg[0]));
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
 		LocalDateTime now = LocalDateTime.now();
 		String output_dir = args[1]+"/"+ dtf.format(now);
